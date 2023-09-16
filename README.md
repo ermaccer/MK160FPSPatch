@@ -17,7 +17,7 @@ Since the game uses 30/60hz materials for certain things, some elements might be
 broken during previously capped sections such as character faces or eyes.
 
 While all fatal blows, fatalities and intros will run at 60 fps, their animations
-seem to be recorded at 30 fps without interpolation it seems. This was also the case
+seem to be recorded at 30 fps without interpolation. This was also the case
 with some MK11 animations (Scorpion's fire turbine intro is 30 fps for example).
 
 60 FPS might be implemented properly by QLOC/NRS in the near future, enjoy for now.

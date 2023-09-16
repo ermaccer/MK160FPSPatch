@@ -177,6 +177,7 @@
     <ClInclude Include="minhook\src\hde\table64.h" />
     <ClInclude Include="minhook\src\trampoline.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="utils\addr.h" />
     <ClInclude Include="utils\MemoryMgr.h" />
     <ClInclude Include="utils\Patterns.h" />
@@ -202,6 +203,9 @@
   <ItemGroup>
     <None Include="..\README.md" />
     <None Include="exports.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MK160FPSPatch.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

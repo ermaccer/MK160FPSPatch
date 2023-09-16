@@ -28,7 +28,7 @@ with some MK11 animations (Scorpion's fire turbine intro is 30 fps for example).
 
 ##  60 FPS patch was tested only with the latest Steam version!
 
-You can download binary files from [Releases](https://github.com/ermaccer/MK11Hook/) page. Extract **mk160fps.zip**
+You can download binary files from [Releases](https://github.com/ermaccer/MK160FPSPatch/releases) page. Extract **mk160fps.zip**
 to MK12\Binaries\Win64 folder of Mortal Kombat 1 (so that **dsound.dll** ends up near **SDL2.dll**).
 
 If you are not sure how to find your Mortal Kombat 1 folder, search for it in your Steam library then right click on the entry and select Manage->Browse local files.

@@ -100,5 +100,8 @@
     <None Include="exports.def">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="..\README.md">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

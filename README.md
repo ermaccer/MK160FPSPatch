@@ -9,6 +9,9 @@ Removes 30 fps cap from:
 - Kustomization
 - Cinematics (intros/fatal blows/fatalities) **Read below**
 
+<p align="center">Click the image to go to the YT video.</p>
+
+[![YouTubeVideo](https://i.imgur.com/n89ajEH.jpg)](https://www.youtube.com/watch?v=3wBk2euEs0Q)
 
 
 # Issues

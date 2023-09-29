@@ -6,19 +6,45 @@
 #include "utils/Patterns.h"
 #include "exports.h"
 #include "minhook/include/MinHook.h"
+#include "IniReader.h"
 
 using namespace Memory::VP;
 using namespace hook::txn;
 
+
+static bool ms_b60FPSAllowed = true;
+
+
+static int64(*orgGamelogicJump)(int64, char*, unsigned int, int, int, int, int, int, int);
+int64 GamelogicJump(int64 gameInfoPtr, char* mkoName, unsigned int functionHash, int a3, int a4, int a5, int a6, int a7, int a8)
+{
+    if (strcmp(mkoName, "MapMode.mko") == 0)
+    {
+        // enter/return/start
+        if (functionHash == 0xA1A4DF6C || functionHash == 0x44A477CC || functionHash == 0x4CA174CC)
+            ms_b60FPSAllowed = true;
+        else
+            ms_b60FPSAllowed = false;
+    }
+    else
+        ms_b60FPSAllowed = false;
+  
+    return orgGamelogicJump(gameInfoPtr, mkoName, functionHash, a3, a4, a5, a6, a7, a8);
+}
+
 static void (*orgSetFrameSkipping)(int status, int flags);
 void SetFrameSkipping(int mode, int flags)
 {
-    mode = 1;
+    if (ms_b60FPSAllowed)
+        mode = 1;
     orgSetFrameSkipping(mode, flags);
 }
 
 void Init()
 {
+    CIniReader ini("");
+    bool invasionsOnly = ini.ReadBoolean("Settings", "InvasionsOnly", false);
+
     MH_Initialize();
     static uintptr_t setFrameSkippingPtr = 0;
 
@@ -33,13 +59,30 @@ void Init()
     }
     else
         MessageBoxA(0, "Failed to find SetFrameSkip pattern!", "MK1.60FPSPatch", MB_ICONERROR);
+
+    if (invasionsOnly)
+    {
+        static uintptr_t gamelogicJumpPtr = 0;
+
+        gamelogicJumpPtr = (uintptr_t)get_pattern("48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 57 41 54 41 55 41 56 41 57 48 83 EC 50 33 F6 45 33 FF 45 33 E4 48 89 74 24 ? 4C 89 7C 24");
+
+        if (gamelogicJumpPtr)
+        {
+            MH_STATUS s = MH_CreateHook((void*)gamelogicJumpPtr, GamelogicJump, (void**)&orgGamelogicJump);
+
+            if (s == MH_OK)
+                MH_EnableHook((void*)gamelogicJumpPtr);
+        }
+        else
+            MessageBoxA(0, "Failed to find GamelogicJump pattern!", "MK1.60FPSPatch", MB_ICONERROR);
+    }
 }
 
 
-BOOL APIENTRY DllMain( HMODULE hModule,
-                       DWORD  ul_reason_for_call,
-                       LPVOID lpReserved
-                     )
+BOOL APIENTRY DllMain(HMODULE hModule,
+    DWORD  ul_reason_for_call,
+    LPVOID lpReserved
+)
 {
     switch (ul_reason_for_call)
     {

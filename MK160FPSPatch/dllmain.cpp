@@ -21,7 +21,7 @@ int64 GamelogicJump(int64 gameInfoPtr, char* mkoName, unsigned int functionHash,
     if (strcmp(mkoName, "MapMode.mko") == 0)
     {
         // enter/return/start
-        if (functionHash == 0xA1A4DF6C || functionHash == 0x44A477CC || functionHash == 0x4CA174CC)
+        if (functionHash == 0xA1A4DF6C || functionHash == 0x44A477CC || functionHash == 0x4CA174CC || functionHash == 0x7DED6222)
             ms_b60FPSAllowed = true;
         else
             ms_b60FPSAllowed = false;
@@ -48,7 +48,7 @@ void Init()
     MH_Initialize();
     static uintptr_t setFrameSkippingPtr = 0;
 
-    setFrameSkippingPtr = (uintptr_t)get_pattern("48 89 5C 24 08 48 89 74 24 10 57 48 83 EC 20 0F B6 D9 8B FA 0F B6 0D ? ? ? ? 8D 41 FE");
+    setFrameSkippingPtr = (uintptr_t)get_pattern("48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC 20 8B FA 0F B6 D9 E8 ? ? ? ? 0F B6 F0 83 FF 08 75 0B 88 1D");
 
     if (setFrameSkippingPtr)
     {

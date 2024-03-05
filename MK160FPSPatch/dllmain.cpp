@@ -4,7 +4,7 @@
 #include "utils/MemoryMgr.h"
 #include "utils/Trampoline.h"
 #include "utils/Patterns.h"
-#include "exports.h"
+
 #include "minhook/include/MinHook.h"
 #include "IniReader.h"
 
@@ -48,7 +48,7 @@ void Init()
     MH_Initialize();
     static uintptr_t setFrameSkippingPtr = 0;
 
-    setFrameSkippingPtr = (uintptr_t)get_pattern("48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC 20 0F B6 D9 8B FA 0F B6 0D ? ? ? ? 8D 41 FE 3C 01 40 0F 96 C6 83 FA 08");
+    setFrameSkippingPtr = (uintptr_t)get_pattern("48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC 20 0F B6 05 ? ? ? ? 8B DA 0F B6 F9 84 C0 75 4F E8");
 
     if (setFrameSkippingPtr)
     {
@@ -87,7 +87,6 @@ BOOL APIENTRY DllMain(HMODULE hModule,
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
-        LoadOriginalDLL();
         Init();
         break;
 

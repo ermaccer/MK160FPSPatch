@@ -36,9 +36,6 @@
     <ClInclude Include="utils\addr.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
-    <ClInclude Include="exports.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="minhook\src\buffer.h">
       <Filter>Header Files\minhook</Filter>
     </ClInclude>
@@ -80,9 +77,6 @@
     <ClCompile Include="utils\addr.cpp">
       <Filter>Header Files\utils</Filter>
     </ClCompile>
-    <ClCompile Include="exports.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="minhook\src\buffer.c">
       <Filter>Header Files\minhook</Filter>
     </ClCompile>
@@ -106,9 +100,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="exports.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="..\README.md">
       <Filter>Resource Files</Filter>
     </None>

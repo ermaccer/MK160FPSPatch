@@ -48,7 +48,7 @@ void Init()
     MH_Initialize();
     static uintptr_t setFrameSkippingPtr = 0;
 
-    setFrameSkippingPtr = (uintptr_t)get_pattern("48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC 20 0F B6 05 ? ? ? ? 8B DA 0F B6 F9 84 C0 75 4F E8");
+    setFrameSkippingPtr = (uintptr_t)get_pattern("48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC 20 8B DA 0F B6 F9 E8 ? ? ? ? 0F B6 F0 83 FB 08 75 09 40 88 3D ? ? ? ? EB 7D 8B C3");
 
     if (setFrameSkippingPtr)
     {
@@ -64,7 +64,7 @@ void Init()
     {
         static uintptr_t gamelogicJumpPtr = 0;
 
-        gamelogicJumpPtr = (uintptr_t)get_pattern("48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 57 41 54 41 55 41 56 41 57 48 83 EC 40 33 ED 45 33 FF 45 33 E4 48 89 6C 24 ? 4C 89 7C 24");
+        gamelogicJumpPtr = (uintptr_t)get_pattern("4C 8B DC 48 83 EC 68 0F B6 84 24 ? ? ? ? 49 89 5B 18 41 8B D8 49 89 6B 20 48 8B EA 45 88 4B C8 48 8D 15 ? ? ? ? 88 44 24 31 0F B6 84 24 ? ? ? ? 49 89 73 F8 48 8D B1 ? ? ? ? 88 44 24 32 0F B6 84 24");
 
         if (gamelogicJumpPtr)
         {

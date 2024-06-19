@@ -1,5 +1,7 @@
 # MK1.60FPSPatch
 
+# No longer needed as of June 18 2024 update
+
 A 60 FPS patch for Mortal Kombat 1.
 
 Removes 30 fps cap from:
